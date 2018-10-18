@@ -15,6 +15,12 @@
     <p class="card-text">{{restaurant.description|linebreaks}}</p>
     <p class="card-text">Opening Time: {{restaurant.opening_time}}</p>
     <p class="card-text">Closing Time: {{restaurant.closing_time}}</p>
+
+    {% for item in items %}
+      <h5 class="card-title">Item: {{item.name}}</h5>
+      <p class="card-text">Price:{{item.price|linebreaks}}</p>
+    {% endfor %}
+
     <div class="row text-center">
       <div class="col-md-4">
             <a href="{% url 'item-create' restaurant.id %}" class="btn btn-outline-danger btn-block">Create Item</a>

@@ -19,7 +19,7 @@ class Item (models.Model):
 	restaurant = models.ForeignKey(Restaurant, on_delete = models.CASCADE, default = 1)
 
 	def __str__(self):
-		return self.title
+		return self.name
 
 
 	def get_absolute_url (self):

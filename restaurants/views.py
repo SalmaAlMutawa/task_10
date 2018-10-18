@@ -50,8 +50,11 @@ def restaurant_list(request):
 
 
 def restaurant_detail(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id=restaurant_id)
+    items = restaurant.item_set.all()
     context = {
-        "restaurant": Restaurant.objects.get(id=restaurant_id)
+        "restaurant": restaurant,
+        "items": items
     }
     return render(request, 'detail.html', context)
 
@@ -77,7 +80,8 @@ def item_create(request, restaurant_id):
         if form.is_valid():
             rest_item = form.save(commit=False)
             rest_item.restaurant = restaurant
-            return redirect ('restaurant-detail', restaurant_id = restaurant_obj.id)
+            form.save()
+            return redirect ('restaurant-detail', restaurant_id = restaurant.id)
     context = {
         "form" : form,
         "restaurant" : restaurant,
